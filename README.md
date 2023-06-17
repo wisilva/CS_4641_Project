@@ -16,6 +16,16 @@ We hope to at least match the best performance on our imbalanced Kaggle dataset 
 
 Link to our semester plan: https://docs.google.com/spreadsheets/d/1Jp_Bu6QtXSaUK9Z2fSecP_BQxmAvKgUN0jklrbbOljo/edit?usp=sharing
 
+Responsibilities:
+
+Sam: Assist with data cleaning, sampling, and feature reduction. Implementation, testing, and visualization of DBSCAN, Midterm Report
+William: Assist with data cleaning, sampling, and feature reduction. Implementation, testing, and visualization of Hierarchical Clustering and SVM, Proposal and Github management
+Stefan: Assist with data cleaning, sampling, and feature reduction. Implementation, testing, and visualization of Neural Networks and Naive Bayes
+Carter: Primary for data cleaning, sampling, and feature reduction. Implementation, testing, and visualization of Regreessions
+Keyes: Assist with data cleaning, sampling, and feature reduction. Implementation, testing, and visualization of K-Means and GMM
+
+All: Results comparison and final report, peer reviews.
+
 
 Bibliography
 
