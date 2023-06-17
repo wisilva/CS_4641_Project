@@ -14,6 +14,7 @@ We hope to at least match the best performance on our imbalanced Kaggle dataset 
 
 
 
+Link to our semester plan: https://docs.google.com/spreadsheets/d/1Jp_Bu6QtXSaUK9Z2fSecP_BQxmAvKgUN0jklrbbOljo/edit?usp=sharing
 
 
 Bibliography
