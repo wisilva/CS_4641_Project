@@ -24,7 +24,7 @@ William: Assist with data cleaning, sampling, and feature reduction. Implementat
 
 Stefan: Assist with data cleaning, sampling, and feature reduction. Implementation, testing, and visualization of Neural Networks and Naive Bayes
 
-Carter: Primary for data cleaning, sampling, and feature reduction. Implementation, testing, and visualization of Regreessions
+Carter: Primary for data cleaning, sampling, and feature reduction. Implementation, testing, and visualization of Regressions
 
 Keyes: Assist with data cleaning, sampling, and feature reduction. Implementation, testing, and visualization of K-Means and GMM
 
