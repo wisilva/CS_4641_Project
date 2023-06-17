@@ -16,8 +16,11 @@ We hope to at least match the best performance on our imbalanced Kaggle dataset 
 
 Bib
 
-https://www.inscribe.ai/fraud-detection/credit-fraud-detection
-https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8123782
-https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8776942
-https://www.bankrate.com/finance/credit-cards/credit-card-fraud-statistics/#fraud
+1. https://www.inscribe.ai/fraud-detection/credit-fraud-detection
+
+2. https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8123782
+
+3. https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8776942
+
+4. https://www.bankrate.com/finance/credit-cards/credit-card-fraud-statistics/#fraud
 
