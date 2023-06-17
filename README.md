@@ -20,7 +20,7 @@ Bibliography
 
 2. Awoyemi, John O., et al. Credit Card Fraud Detection Using Machine Learning... - IEEE Xplore, ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=8123782. Accessed 17 June 2023. 
 
-3. Thennakoon, Anuruddha, et al. Real-Time Credit Card Fraud Detection Using Machine Learning | IEEE..., 2019, ieeexplore.ieee.org/document/8776942. 
+3. Thennakoon, Anuruddha, et al. Real-Time Credit Card Fraud Detection Using Machine Learning - IEEE..., 2019, ieeexplore.ieee.org/document/8776942. 
 
 4. Egan, John. “Credit Card Fraud Statistics.” Bankrate, 12 Jan. 2023, www.bankrate.com/finance/credit-cards/credit-card-fraud-statistics/#fraud.
 
