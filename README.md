@@ -14,13 +14,13 @@ We hope to at least match the best performance on our imbalanced Kaggle dataset 
 
 
 
-Bib
+Bibliography
 
-1. https://www.inscribe.ai/fraud-detection/credit-fraud-detection
+1. “Credit Card Fraud Detection: Everything You Need To Know.” Credit Card Fraud Detection: Everything You Need to Know, 13 May 2023, www.inscribe.ai/fraud-detection/credit-fraud-detection.
 
-2. https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8123782
+2. Awoyemi, John O., et al. Credit Card Fraud Detection Using Machine Learning... - IEEE Xplore, ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=8123782. Accessed 17 June 2023. 
 
-3. https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8776942
+3. Thennakoon, Anuruddha, et al. Real-Time Credit Card Fraud Detection Using Machine Learning | IEEE..., 2019, ieeexplore.ieee.org/document/8776942. 
 
-4. https://www.bankrate.com/finance/credit-cards/credit-card-fraud-statistics/#fraud
+4. Egan, John. “Credit Card Fraud Statistics.” Bankrate, 12 Jan. 2023, www.bankrate.com/finance/credit-cards/credit-card-fraud-statistics/#fraud.
 
