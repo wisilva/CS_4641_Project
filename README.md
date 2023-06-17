@@ -1,5 +1,7 @@
-# CS_4641_Project
-Final Project for CS 4641 Machine Learning Summer 2023
+CS 4641 Team 5 Project
+
+Summer 2023
+
 Machine Learning for Credit Card Fraud Detection
 
 Credit card fraud detection is a valuable application of ML that has been researched extensively over the past decade [1]. The goal of researchers has been to use anonymized data supplied by credit card companies to train models that determine if a credit card transaction is fraudulent, generally as a binary classification [2]. A major goal is to allow for accurate real-time detection of credit card fraud that can prevent the unlawful purchases as they happen and notify the holder of the card of fraudulent activity [3]. Prior research has resulted in comparative analyses of various machine learning methods on the problem, as well as discussions about the main difficulties in designing an accurate classifier with the data supplied [2]. 
