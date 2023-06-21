@@ -16,6 +16,8 @@ We hope to at least match the best performance on our imbalanced Kaggle dataset 
 
 Link to our semester plan: https://docs.google.com/spreadsheets/d/1Jp_Bu6QtXSaUK9Z2fSecP_BQxmAvKgUN0jklrbbOljo/edit?usp=sharing
 
+Link to our dataset: https://www.kaggle.com/competitions/ieee-fraud-detection/data
+
 Responsibilities:
 
 Sam: Assist with data cleaning, sampling, and feature reduction. Implementation, testing, and visualization of DBSCAN, Midterm Report
