@@ -14,17 +14,29 @@ data =  pd.read_csv('./data/train_data_clean_reduced_encoded.csv')
 df = pd.DataFrame(data)
 
 
-X = df.drop(columns=['0'])
-y =np.array(df['0'])
+X = df
 
-# mult = 1
+#Downsampling
 
-# fCount = int(len(fClass) * mult)
+#mult is ratio of legitimate data to fraudulent data
+mult = 1
 
+fClass = X[X['0'] == 1]
+lClass = X[X['0'] == 0]
 
-# #downsample
-# lClass = lClass.sample(fCount, axis=0)
+fCount = int(len(fClass) * mult)
 
+#downsample
+lClass = lClass.sample(fCount, axis=0)
+
+X = pd.concat([fClass.reset_index(drop=True), lClass.reset_index(drop=True)],axis=0)
+
+#shuffle data
+X.sample(frac = 1)
+y =np.array(X['0'])
+X = X.drop(columns=['0'])
+
+#End downsampling
 
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
