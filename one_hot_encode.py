@@ -14,7 +14,7 @@ from imblearn import over_sampling
 data =  pd.read_csv('data/train_transaction_clean_downsampled_unencoded.csv')
 df = pd.DataFrame(data)
 
-TEST_DATA =  pd.read_csv('data/test_data_unencoded.csv')
+TEST_DATA =  pd.read_csv('data/test_data_clean_unencoded.csv')
 TEST_SET = pd.DataFrame(TEST_DATA)
 
 
@@ -52,5 +52,5 @@ TEST_objs = TEST_trans.fit_transform(TEST_objs)
 TEST_X = np.concatenate( [TEST_nums,TEST_objs], axis=1)
 
 TEST_df = pd.DataFrame(np.concatenate([np.transpose(TEST_y).reshape(len(TEST_y),1),np.array(TEST_X)], axis=1) )
-TEST_df.to_csv(f"data/test_data_onehot.csv",index=False)
+TEST_df.to_csv(f"data/test_data_clean_onehot.csv",index=False)
 

@@ -10,7 +10,7 @@ import pandas as pd
 import scipy.sparse as sp
 from imblearn import over_sampling
 
-mult = 1.0 #downsamples the legitimate cases to this ratio of the number of fraudulent cases 
+mult = 8.0 #downsamples the legitimate cases to this ratio of the number of fraudulent cases 
 bucket_size = 5000 #higher value increases time to run KNN at a quadratic rate but should provide more accurate nearest neighbors
 
 data =  pd.read_csv('./data/train_transaction.csv')
