@@ -10,11 +10,22 @@ from sklearn.pipeline import Pipeline
 import pandas as pd
 import scipy.sparse as sp
 
-data =  pd.read_csv('./data/train_transaction_clean_downsampled_onehot.csv')
+data =  pd.read_csv('./data/train_data_clean_reduced_encoded.csv')
 df = pd.DataFrame(data)
+
 
 X = df.drop(columns=['0'])
 y =np.array(df['0'])
+
+# mult = 1
+
+# fCount = int(len(fClass) * mult)
+
+
+# #downsample
+# lClass = lClass.sample(fCount, axis=0)
+
+
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
 gnb = GaussianNB()

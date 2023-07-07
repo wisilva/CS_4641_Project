@@ -10,7 +10,7 @@ import pandas as pd
 import scipy.sparse as sp
 from imblearn import over_sampling
 
-mult = 8.0 #downsamples the legitimate cases to this ratio of the number of fraudulent cases 
+
 bucket_size = 5000 #higher value increases time to run KNN at a quadratic rate but should provide more accurate nearest neighbors
 
 data =  pd.read_csv('./data/train_transaction.csv')
@@ -30,7 +30,7 @@ test_ratio = len(TEST_SET[TEST_SET.isFraud == 1]) / len(TEST_SET[TEST_SET.isFrau
 
 df = df.drop(TEST_SET.index)
 
-#normalize (min/max or standardization?) -> downsample -> knn impute with buckets of size bucket_size-> SMOTENC upsample (includes PCA)
+#normalize (min/max or standardization?) -> knn impute with buckets of size bucket_size-> Downsample and SMOTENC upsample (includes PCA)
 
 #Min/max normalization
 #scaler = pre.MinMaxScaler()
@@ -66,12 +66,6 @@ x_types = X.columns
 
 fClass = X[df.isFraud == 1]
 lClass = X[df.isFraud == 0]
-
-fCount = int(len(fClass) * mult)
-
-#downsample
-lClass = lClass.sample(fCount, axis=0)
-
 
 #split by label
 f_nums = fClass.select_dtypes(np.number) 
@@ -121,7 +115,7 @@ X = pd.concat([fClass.reset_index(drop=True), lClass.reset_index(drop=True)],axi
 #Write unencoded data
 X_unenc = X.fillna("None")
 X_unenc = X_unenc.sample(frac=1)
-X_unenc.to_csv(f"data/train_transaction_clean_downsampled_unencoded.csv",index=False)
+X_unenc.to_csv(f"data/train_transaction_clean_unencoded.csv",index=False)
 
 
 TEST_X = TEST_SET.drop(columns=['TransactionID', 'isFraud', 'TransactionDT'])
