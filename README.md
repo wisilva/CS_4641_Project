@@ -8,7 +8,7 @@ Machine Learning for Credit Card Fraud Detection
 
 # Midterm Checkpoint
 
-![Uploading groundTruth.png…]()
+<img width="651" alt="groundTruth" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/1cd437c0-65b6-46a5-82f9-0a9573a543bb">
 
  Kmeans
 
@@ -23,15 +23,10 @@ had an average balanced accuracy of 0.59 and an average F-Measure of 0.32. These
 show that the linear boundaries of k-means did not give a good reprisentation of the highly
 nonlinear data. The convergence to high error results implies that k-means is not capable of
 adequately modeling the data.
-![Uploading kRS.png…]()
-![Uploading kOther.png…]()
+<img width="559" alt="kRS" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/6608d4c5-2353-438b-b297-0feea3fed44d">
+<img width="1225" alt="kOther" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/833fdf48-1b8f-4ba5-b704-aa22c78bad58">
 <img width="527" alt="kJC" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/b660dff0-96b9-412e-ba03-a88490ee4164">
-
-
 <img width="568" alt="kmeansClusters" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/0235db9c-8047-4bbe-af32-2fa2cfc4773b">
-
-
-
 ## GMM
 The data was prepared identically to k-means, and a similar battery of tests were ran with
 increasing numbers of principle components included. For the sake of rigor and
@@ -44,22 +39,17 @@ average balanced accuracy of 0.56, and an average F-Measure of 0.24. Overall, th
 gaussian models did not show a sufficient improvement over k-means. Their convergences
 to high error results imply they the gaussian mixture model is not capable of adequately
 modeling the data.
-![Uploading gmm2RS.png…]()
-<img width="549" alt="gmm2PrecisionRecall" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/87badb56-f6c1-4c29-b2af-f29c0ea834e8">
-![Uploading gmm2FMeasure.png…]()
-
-![Uploading gmm2JC.png…]()
-![Uploading gmm2Clusters.png…]()
-
+<img width="609" alt="gmm2RS" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/89a55674-939b-429a-896b-53f287bffc42"><img width="549" alt="gmm2PrecisionRecall" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/87badb56-f6c1-4c29-b2af-f29c0ea834e8">
+<img width="537" alt="gmm2FMeasure" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/3a0c677a-5be4-491e-909c-cf2a35134095">
+<img width="530" alt="gmm2JC" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/6cb4bb70-8d77-44f4-9bc7-530d0b5c9502">!
+<img width="641" alt="gmm2Clusters" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/de6fa799-b654-45fd-a6b0-7457e51104c4">
 
 
 <img width="525" alt="gmm4RS" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/ac570a45-f670-4aff-a3c4-3fd53e254f28">
-![Uploading gmm4Other.png…]()
-![Uploading gmm4JC.png…]()
-
+<img width="1188" alt="gmm4Other" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/caa4cca6-260d-4c38-9916-9ecf2254ab10">!
+<img width="542" alt="gmm4JC" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/6313a991-7201-4cd5-9ffa-84fb3a7cee63">
 <img width="597" alt="gmm4Clusters" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/1dfd46c7-b5ea-47f8-8895-d31b7d15bc43">
-![Uploading gmm4Assignments.png…]()
-
+<img width="621" alt="gmm4Assignments" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/1bc93368-5728-477a-ab8f-2b6ad9686a5a">
 
 
 ## DBSCAN
