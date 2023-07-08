@@ -54,9 +54,19 @@ modeling the data.
 
 ## DBSCAN
 Our group's implementation of DBCAN involved using the same preprocessing pipeline used with the rest of the implementations. However, we did not use PCA to reduce the dimensionality of the data to two axes because we knew that DBCAN only works well with two dimensions or less. We used TSNE instead, which has shown to be an improvement over PCA in numerous cases and we thought it fit our case. Due to the computationally intensive nature of DBSCAN, we decided to use the GPU-accelerated version of SKLEARN, CUML, on colab. This allowed us to run the many perplexities and iterations of TSNE that are needed to evaluate, which perplexity we should use for DBSCAN as well as whether our number of iterations was enough to reach stability for TSNE. We ran all perplexity values, the hyperparameter for TSNE, from 5 to 50, which are the recommended values, for 10 thousand iterations. Then we ran that set of perplexities again for 20 thousand iterations, which is far above the default value of 1 thousand for TNSE. We did this because when we were running with the default number of iterations we were not reaching stability as a lot of the perplexities had pinching. Even with 20 thousand iterations, still weren't getting much obvious clustering, so we decided to choose the best-looking group with no pinching and looked like it was separating into 2 groups, perplexity 46, since we would run out of compute time if we tried running all perplexities for more iterations. We ran a perplexity of 46 for 100 thousand iterations and then ran GPU-accelerated DBSCAN on the dimensionally reduced dataset with eps ranging from 200 to 1000 with a min sampling size of 2, 3, or 4. This provided 5 to 6 clusters separated a lot, but also missing a lot of data points. I then decided to use the data provided by running TNSE with a perplexity of 50 with 20 thousand iterations as it provided a relatively tight group and was relatively stable between 10 thousand and 20 thousand iterations. This still yielded 5 to 6 clusters. It is clear with DBSCAN that it is not suited well to data of this dimensionality especially with a limited amount of available compute time as we did not get two clusters one with fraud and one with good transactions. DBSCAN provided many clusters instead of two despite the many parameters we tested with TSNE and DBSCAN, so it did not lend itself well to further analysis.
-
+### TNSE Analysis
+All perplexities from 5 to 50 with 20 thousand iterations
 ![TNSE](https://github.com/wisilva/CS_4641_Project/assets/33332985/2ea0f668-654f-40b6-8ba0-470e6e749435)
 
+Perplexity 46 with 100000 iterations
+![TNSE_50_Perp_100000_iters](https://github.com/wisilva/CS_4641_Project/assets/33332985/06349f82-368a-4e07-b62d-85e4138e610a)
+
+### DBSCAN Analysis
+DBSCAN of data of perplexity 46 with 100 thousand iterations
+![DBSCAN_Perp_46](https://github.com/wisilva/CS_4641_Project/assets/33332985/eef57f92-d9a8-4739-a2d7-ec2625c97667)
+
+DBSCAN of data of perplexity 50 with 20 thousand iterations
+![DBSCAN_perp_50](https://github.com/wisilva/CS_4641_Project/assets/33332985/5fc4aebd-d937-42c9-a31b-2bd9ffc7ea60)
 
 # Midterm Report
 
