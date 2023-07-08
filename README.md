@@ -1,3 +1,5 @@
+
+
 CS 4641 Team 5 Project (Test)
 
 Summer 2023
@@ -5,7 +7,10 @@ Summer 2023
 Machine Learning for Credit Card Fraud Detection
 
 # Midterm Checkpoint
-## Kmeans
+
+![Uploading groundTruth.png…]()
+
+ Kmeans
 
 The data was cleaned with a k-nearest neighbors algorithm before being fitted to different
 models and subjected to principle component analysis. Categorical features were one hot
@@ -18,6 +23,14 @@ had an average balanced accuracy of 0.59 and an average F-Measure of 0.32. These
 show that the linear boundaries of k-means did not give a good reprisentation of the highly
 nonlinear data. The convergence to high error results implies that k-means is not capable of
 adequately modeling the data.
+![Uploading kRS.png…]()
+![Uploading kOther.png…]()
+<img width="527" alt="kJC" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/b660dff0-96b9-412e-ba03-a88490ee4164">
+
+
+<img width="568" alt="kmeansClusters" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/0235db9c-8047-4bbe-af32-2fa2cfc4773b">
+
+
 
 ## GMM
 The data was prepared identically to k-means, and a similar battery of tests were ran with
@@ -31,6 +44,23 @@ average balanced accuracy of 0.56, and an average F-Measure of 0.24. Overall, th
 gaussian models did not show a sufficient improvement over k-means. Their convergences
 to high error results imply they the gaussian mixture model is not capable of adequately
 modeling the data.
+![Uploading gmm2RS.png…]()
+<img width="549" alt="gmm2PrecisionRecall" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/87badb56-f6c1-4c29-b2af-f29c0ea834e8">
+![Uploading gmm2FMeasure.png…]()
+
+![Uploading gmm2JC.png…]()
+![Uploading gmm2Clusters.png…]()
+
+
+
+<img width="525" alt="gmm4RS" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/ac570a45-f670-4aff-a3c4-3fd53e254f28">
+![Uploading gmm4Other.png…]()
+![Uploading gmm4JC.png…]()
+
+<img width="597" alt="gmm4Clusters" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/1dfd46c7-b5ea-47f8-8895-d31b7d15bc43">
+![Uploading gmm4Assignments.png…]()
+
+
 
 ## DBSCAN
 Our group's implementation of DBCAN involved using the same preprocessing pipeline used with the rest of the implementations. However, we did not use PCA to reduce the dimensionality of the data to two axes because we knew that DBCAN only works well with two dimensions or less. We used TSNE instead, which has shown to be an improvement over PCA in numerous cases and we thought it fit our case. Due to the computationally intensive nature of DBSCAN, we decided to use the GPU-accelerated version of SKLEARN, CUML, on colab. This allowed us to run the many perplexities and iterations of TSNE that are needed to evaluate, which perplexity we should use for DBSCAN as well as whether our number of iterations was enough to reach stability for TSNE. We ran all perplexity values, the hyperparameter for TSNE, from 5 to 50, which are the recommended values, for 10 thousand iterations. Then we ran that set of perplexities again for 20 thousand iterations, which is far above the default value of 1 thousand for TNSE. We did this because when we were running with the default number of iterations we were not reaching stability as a lot of the perplexities had pinching. Even with 20 thousand iterations, still weren't getting much obvious clustering, so we decided to choose the best-looking group with no pinching and looked like it was separating into 2 groups, perplexity 46, since we would run out of compute time if we tried running all perplexities for more iterations. We ran a perplexity of 46 for 100 thousand iterations and then ran GPU-accelerated DBSCAN on the dimensionally reduced dataset with eps ranging from 200 to 1000 with a min sampling size of 2, 3, or 4. This provided 5 to 6 clusters separated a lot, but also missing a lot of data points. I then decided to use the data provided by running TNSE with a perplexity of 50 with 20 thousand iterations as it provided a relatively tight group and was relatively stable between 10 thousand and 20 thousand iterations. This still yielded 5 to 6 clusters. It is clear with DBSCAN that it is not suited well to data of this dimensionality especially with a limited amount of available compute time as we did not get two clusters one with fraud and one with good transactions. DBSCAN provided many clusters instead of two despite the many parameters we tested with TSNE and DBSCAN, so it did not lend itself well to further analysis.
