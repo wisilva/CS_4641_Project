@@ -43,7 +43,7 @@ modeling the data.
 <img width="537" alt="gmm2FMeasure" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/3a0c677a-5be4-491e-909c-cf2a35134095">
 <img width="530" alt="gmm2JC" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/6cb4bb70-8d77-44f4-9bc7-530d0b5c9502">!
 <img width="641" alt="gmm2Clusters" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/de6fa799-b654-45fd-a6b0-7457e51104c4">
-
+![gmm2Clusters](images/gmm2Clusters.png)
 
 <img width="525" alt="gmm4RS" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/ac570a45-f670-4aff-a3c4-3fd53e254f28">
 <img width="1188" alt="gmm4Other" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/caa4cca6-260d-4c38-9916-9ecf2254ab10">!
