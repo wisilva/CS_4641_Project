@@ -40,17 +40,21 @@ average balanced accuracy of 0.56, and an average F-Measure of 0.24. Overall, th
 gaussian models did not show a sufficient improvement over k-means. Their convergences
 to high error results imply they the gaussian mixture model is not capable of adequately
 modeling the data.
-<img width="609" alt="gmm2RS" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/89a55674-939b-429a-896b-53f287bffc42"><img width="549" alt="gmm2PrecisionRecall" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/87badb56-f6c1-4c29-b2af-f29c0ea834e8">
-<img width="537" alt="gmm2FMeasure" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/3a0c677a-5be4-491e-909c-cf2a35134095">
-<img width="530" alt="gmm2JC" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/6cb4bb70-8d77-44f4-9bc7-530d0b5c9502">!
-<img width="641" alt="gmm2Clusters" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/de6fa799-b654-45fd-a6b0-7457e51104c4">
+![gmm2Clusters](images/gmm2RS.png)
+![gmm2Clusters](images/gmm2PrecisionRecall.png)
+
+![gmm2Clusters](images/gmm2FMeasure.png)
+![gmm2Clusters](images/gmm2JC.png)
 ![gmm2Clusters](images/gmm2Clusters.png)
 
-<img width="525" alt="gmm4RS" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/ac570a45-f670-4aff-a3c4-3fd53e254f28">
-<img width="1188" alt="gmm4Other" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/caa4cca6-260d-4c38-9916-9ecf2254ab10">!
-<img width="542" alt="gmm4JC" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/6313a991-7201-4cd5-9ffa-84fb3a7cee63">
-<img width="597" alt="gmm4Clusters" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/1dfd46c7-b5ea-47f8-8895-d31b7d15bc43">
-<img width="621" alt="gmm4Assignments" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/1bc93368-5728-477a-ab8f-2b6ad9686a5a">
+
+![gmm2Clusters](images/gmm4RS.png)
+![gmm2Clusters](images/gmm4Other.png)
+![gmm2Clusters](images/gmm4JC.png)
+![gmm2Clusters](images/gmm4Clusters.png)
+![gmm2Clusters](images/gmm4Assignments.png)
+
+
 
 
 ## DBSCAN
