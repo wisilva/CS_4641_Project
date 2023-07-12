@@ -64,14 +64,14 @@ All perplexities from 5 to 50 with 20 thousand iterations
 ![TNSE](images/TNSE.png)
 
 Perplexity 46 with 100000 iterations
-![TNSE_50_Perp_100000_iters](https://github.com/wisilva/CS_4641_Project/assets/33332985/06349f82-368a-4e07-b62d-85e4138e610a)
+![TNSE_50_Perp_100000_iters](images/TNSE_50_Perp_100000_iters.png)
 
 ### DBSCAN Analysis
 DBSCAN of data of perplexity 46 with 100 thousand iterations
-![DBSCAN_Perp_46](https://github.com/wisilva/CS_4641_Project/assets/33332985/eef57f92-d9a8-4739-a2d7-ec2625c97667)
+![DBSCAN_Perp_46](images/DBSCAN_Perp_46.png)
 
 DBSCAN of data of perplexity 50 with 20 thousand iterations
-![DBSCAN_perp_50](https://github.com/wisilva/CS_4641_Project/assets/33332985/5fc4aebd-d937-42c9-a31b-2bd9ffc7ea60)
+![DBSCAN_perp_50](images/DBSCAN_perp_50.png)
 
 ## Naive Bayes
 The Naive Bayes Classifier is our first supervised technique and only supervised classifier for the midterm checkpoint. With the Naive Bayes (Gaussian) classifier, it is especially interesting to look at how an imbalance in the training set will affect the algorithm, as the priors are calculated immediately from the data itself. I will run the algorithm at multiple ratios of MajoritySet:MinoritySet (legitimate transactions and fraudulent transactions respectively) to see how this affects the various evaluation scores of the model.
