@@ -8,7 +8,7 @@ Machine Learning for Credit Card Fraud Detection
 
 # Midterm Checkpoint
 
-<img width="651" alt="groundTruth" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/1cd437c0-65b6-46a5-82f9-0a9573a543bb">
+![groundTruth](images/groundTruth.png)
 
  Kmeans
 
@@ -23,10 +23,11 @@ had an average balanced accuracy of 0.59 and an average F-Measure of 0.32. These
 show that the linear boundaries of k-means did not give a good reprisentation of the highly
 nonlinear data. The convergence to high error results implies that k-means is not capable of
 adequately modeling the data.
-<img width="559" alt="kRS" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/6608d4c5-2353-438b-b297-0feea3fed44d">
-<img width="1225" alt="kOther" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/833fdf48-1b8f-4ba5-b704-aa22c78bad58">
-<img width="527" alt="kJC" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/b660dff0-96b9-412e-ba03-a88490ee4164">
-<img width="568" alt="kmeansClusters" src="https://github.com/wisilva/CS_4641_Project/assets/97185818/0235db9c-8047-4bbe-af32-2fa2cfc4773b">
+![gmm2Clusters](images/kRS.png)
+![gmm2Clusters](images/kOther.png)
+![gmm2Clusters](images/kJC.png)
+![gmm2Clusters](images/kmeansClusters.png)
+
 ## GMM
 The data was prepared identically to k-means, and a similar battery of tests were ran with
 increasing numbers of principle components included. For the sake of rigor and
