@@ -16,9 +16,14 @@ Despite the interest that has been taken in fraud detection, the problem of cred
 We used a combination of supervised and unsupervised learning for this. Supervised classifiers like Naive Bayes classification and SVMs can be used to provide confident classifications for an input as fraudulent or legitimate, while clustering methods are capable of clustering data into a cluster of legitimate purchases and one or more illegitimate purchases. Intuitively, we have started with hard clustering such as K-means and hierarchical techniques, as this is a binary classification, but we also explored the use of soft boundaries: card holders can make unusual purchases, so it is important to determine whether a purchase is actually fraudulent or simply unusual. We handled this case with a Gaussian Mixture Model, where we could identify unusual purchases as somewhere between fraudulent and legitimate. We intend to use sk-learn implementations for these algorithms, although if we move to neural networks in the final for better performance, we may make changes to the architecture for better results. Finally, one of the biggest issues with the problem is the imbalance of data: since there are far more legitimate purchases than fraudulent ones, there is a need for some approach to balance the training data for the model. We PCA, factor analysis, downsampling, and k-nearest neighbors to clean the data. Below is a description of the data's problems and our solutions
 
 ## Data cleaning
- **WRITE A CLEAR DESCRIPTION OF THE DATASET, THE PROBLEMS WITH IT, AND THE CLEANING APPROACH/METHODS HERE**
+ **WRITE A CLEAR DESCRIPTION OF THE DATASET, THE PROBLEMS WITH IT, AND THE CLEANING APPROACH/METHODS HERE**\
+ What is the dataset, how was the data collected, how did we decide to clean it, what methods did we try but decide to not use?
 
-
+## Methedology
+Kmeans methedology here:\
+GMM methedology here:\
+DBSCAN methedology here:\
+NB methedology here:\
 ## Results and Discussion
 After cleaning the data, the three highest variance features were identified via Principle Component Analysis. The graph below graphs the data points as a function of those components. The yellow points are fraudulent cases.
 ![groundTruth](images/groundTruth.png)
