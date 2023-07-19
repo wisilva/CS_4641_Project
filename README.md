@@ -31,9 +31,23 @@ We cleaned this method in 2 ways.
 Additionally, we also cleaned the dataset using a similar method with a kNN model we wrote ourselves which capped the number of samples compared from the complete dataset rather than splitting the data into buckets before cleaning. This is expected to have little impact on features which were more complete & had lessing missing data, but may produce better results for filling in missing data for features that were missing a majority of the data. We ran this kNN method with k = 25 and a maximum complete sample size (sampled randomly from the complete samples) of 2500.
 
 ## Methodology
-Kmeans Methodology here:\\
-GMM Methodology here:\\
+### Kmeans
+The Kmeans algorithm clusters the data based on each point's distance to the cluster center. Because of this, the boundaries produced by kmeans are simple and based only on Euclidean distance. The data was cleaned with a k-nearest neighbors algorithm before being fitted to different
+models and subjected to principal component analysis. Categorical features were one hot
+encoded, and the dataset was downsampled to provide a balanced dataset. After this preparation, the slices of the dataset
+were sent through a total of 15 kmeans clusterings. Each test used more features than the previous one, with the 15th test fitting the entire dataset. To prevent randomness and noise from polluting the results, each of the 15 tests were repeated 10 times, with the average results collected and graphed in the results section.
+### GMM
+GMM clusters the data by fitting a specified number of multivariate gaussian distributions to the dataset. Each point is then assigned a probability of being a member of one of the gaussian distributions. For the sake of visualization and comparison with other methods, each point was given a hard assignment to its most likely distribution.\ 
+The data was prepared identically to k-means, and a similar battery of tests were ran with
+increasing numbers of principle components included. 15 tests using increasing numbers of features were ran, and each test
+was ran ten times to minimize the effects of random starting conditions. For the sake of rigor and
+completeness, a gaussian mixture of 2 components and 4 components were both tested. In
+a round of preliminary testing, the average log likelihoods of gaussian mixture models with
+various numbers of components were collected, and 4 clusters was identified as the best
+performer via the elbow method.\
+### DBSCAN
 DBSCAN Methodology here:\\
+### Naive Bayes
 NB Methodology here:\\
 ## Results and Discussion
 After cleaning the data, the three highest variance features were identified via Principle Component Analysis. The graph below graphs the data points as a function of those components. The yellow points are fraudulent cases.
@@ -41,15 +55,12 @@ After cleaning the data, the three highest variance features were identified via
 <img src="images/groundTruth.png" width="500">
 ### Kmeans
 
-The data was cleaned with a k-nearest neighbors algorithm before being fitted to different
-models and subjected to principal component analysis. Categorical features were one hot
-encoded, and the dataset was downsampled to provide a balanced dataset. After this preparation, the slices of the dataset
-were sent through a total of 15 kmeans clusterings. Each test used more features than the previous one, with the 15th test fitting the entire dataset. To prevent randomness and noise from polluting the results, each of the 15 tests were repeated 10 times, with the average results collected and graphed below. Over the numerous tests, the k-means algorithm
+Over the numerous tests, the k-means algorithm
 had an average balanced accuracy of 0.59 and an average F-Measure of 0.32. These results
 show that the simple boundaries of k-means did not give a good representation of the highly
 nonlinear data. The model's convergence to high error results implies that k-means is not capable of
 adequately modeling the data.\
-Below is the average Rand Statistic of the kmeans clustering with varying fractions of the features concerned. The horizontal axis shows what portion of the features were considered, starting with $\frac{1}{15}$ and ending with $\frac{15}{15}$. The Rand Statistic is similar to accuracy, so it is not very reliable for unbalanced datasets. The result of about 0.6 shows that the clusters were mostly identifying true negative cases, which is not very useful in commercial applications. The repetition of each test ten times was effective in getting rid of noise due to random initialization, but the inclusion of more features was unable to make the model improve its Rand Statistic.
+Below is the average Rand Statistic of the kmeans clustering with varying fractions of the features concerned. The horizontal axis shows what portion of the features were considered, starting with one fifteenth of the data and ending with the whole dataset. The Rand Statistic is similar to normal accuracy, so it is not very reliable for unbalanced datasets. However, the downsampling solves this problem. The result of about 0.6 shows that the clusters were mostly identifying true negative cases, which is not very useful in commercial applications. The repetition of each test ten times was effective in getting rid of noise due to random initialization, but the inclusion of more features was unable to make the model improve its Rand Statistic.
 
 ![kRS](images/kRS.png)
 
@@ -62,13 +73,7 @@ The graph below plots the same data as the ground truth clustering above, but th
 ![gmm2Clusters](images/kmeansClusters.png)
 
 ### GMM
-The data was prepared identically to k-means, and a similar battery of tests were ran with
-increasing numbers of principle components included. 15 tests using increasing numbers of features were ran, and each test
-was ran ten times to minimize the effects of random starting conditions. For the sake of rigor and
-completeness, a gaussian mixture of 2 components and 4 components were both tested. In
-a round of preliminary testing, the average log likelihoods of gaussian mixture models with
-various numbers of components were collected, and 4 clusters was identified as the best
-performer via the elbow method. The binary gaussian mixture had an average balanced
+The binary gaussian mixture had an average balanced
 accuracy of 0.67 and an average F-Measure of 0.56. The 4-component mixture had an
 average balanced accuracy of 0.56, and an average F-Measure of 0.24. Overall, the
 gaussian models did not show a sufficient improvement over k-means. Their convergences
