@@ -19,11 +19,19 @@ We used a combination of supervised and unsupervised learning for this. Supervis
  **WRITE A CLEAR DESCRIPTION OF THE DATASET, THE PROBLEMS WITH IT, AND THE CLEANING APPROACH/METHODS HERE**\
  What is the dataset, how was the data collected, how did we decide to clean it, what methods did we try but decide to not use?
 
-## Methedology
-Kmeans methedology here:\
-GMM methedology here:\
-DBSCAN methedology here:\
-NB methedology here:\
+The data we used was taken from a competition for fraud detectionn hosted by Vesta, a company which works in that field. The data we used contains information about individual transactions which take place. Each transaction has an ID and label, after which it contains many features numerical and categorical features such as the amount, product code (for product in the transaction), card, address, time, and some features engineered by Vesta. The specific meaning of most of the values is often masked.
+
+We cleaned this method in 2 ways.
+
+//Insert William's method description
+
+Additionally, we also cleaned the dataset using a similar method with a kNN model we wrote ourselves which capped the number of samples compared from the complete dataset rather than splitting the data into buckets before cleaning. This is expected to have little impact on features which were more complete & had lessing missing data, but may produce better results for filling in missing data for features that were missing a majority of the data. We ran this kNN method with $k = 25$ and a maximum complete sample size (sampled randomly from the complete samples) of 2500.
+
+## Methodology
+Kmeans Methodology here:\\
+GMM Methodology here:\\
+DBSCAN Methodology here:\\
+NB Methodology here:\\
 ## Results and Discussion
 After cleaning the data, the three highest variance features were identified via Principle Component Analysis. The graph below graphs the data points as a function of those components. The yellow points are fraudulent cases.
 ![groundTruth](images/groundTruth.png)
