@@ -70,7 +70,8 @@ These graphs show the performance of kmeans as measured with precision, recall, 
 The Jaccard Coefficient ignores the contribution of true negative results, so the dismally low values show that a large portion of the accuracy found above was due to the model correctly identifying cases of legitimate transactions. In the case of real world applications, there is less value in identifying true legitimate cases than true fraudulent cases because it may only take one fraudulent user to steal large sums of money. With this real-world factor in consideration, the average Jaccard Coefficient of 0.19 proves that kmeans is functionally useless for real-world applications.
 ![gmm2Clusters](images/kJC.png)
 The graph below plots the ground truth clustering on the left, and the kmeans clustering on the right. The unimpressive overlap of the two graphs illustrates the point made by the pairwise measures. 
-<img src="images/K.png" width="500">
+
+<img src="images/K.png" width="1000">
 
 ### GMM
 The binary gaussian mixture had an average balanced
@@ -95,7 +96,7 @@ The jaccard coefficient for GMM was better than that of kmeans, but it still had
 
 The graph below plots the ground truth clusters on the left and the predicted clusters on the right. Even though the graph only shows the top three principal components, the poor correspondence of this graph to the ground truth one shows that this clustering lacks much predictive power.
 
-<img src="images/G2.png" width="500">
+<img src="images/G2.png" width="1000">
 
 Although the task of identifying fraud is a binary clustering problem, the poor results above show that the previous models were too simple to represent the data. Before addressing this problem with more complex models, it is worth examining a more complex Gaussian Mixture Model with four clusterings instead of two. In this case, the cluster with the highest proportion of fraud cases is taken to be the fraud cluster, and the other clusters are treated as legitimate.\
 However, adding more clusters did not help the performance in rand statistic. The smaller clustering had virtually no effect, and the results are almost identical to the binary clustering case.
@@ -112,8 +113,8 @@ The true weakness in the 4-cluster model is shown by the Jaccard Coefficient. Ad
 
 Here is the clustering of the 4-gaussian mixture. The colors represent the highest likelihood assignment of each point. The first image shows all resulting clusters, and the second image isolates the fraud cluster.
 
-<img src="images/G41.png" width="500">
-<img src="images/G42.png" width="500">
+<img src="images/G41.png" width="1000">
+<img src="images/G42.png" width="1000">
 
 Overall, the gaussian mixture model was unsuccessful at producing anything that would be useful in a real-world application. We make one final attempt at an unsupervised fraud detection method before moving on to the more powerful supervised methods. 
 
