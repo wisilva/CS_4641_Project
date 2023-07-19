@@ -80,7 +80,7 @@ average balanced accuracy of 0.56, and an average F-Measure of 0.24. Overall, th
 gaussian models did not show a sufficient improvement over k-means. Their convergences
 to high error results imply they the gaussian mixture model is not capable of adequately
 modeling the data.\
-Below is the average Rand Statistic of the kmeans clustering with varying fractions of the features concerned. The horizontal axis shows what portion of the features were considered, starting with $\frac{1}{15}$ and ending with $\frac{15}{15}$. The rand statistic shows that, even with the help of lots of false negatives to boost its score, the accuracy of the model is quite poor. GMM gives soft assignments, so the pairwise metrics were evaluated based on the most likely assignment for the sake of consistent comparison with kmeans clustering.
+Below is the average Rand Statistic of the kmeans clustering with varying fractions of the features concerned. The horizontal axis shows what portion of the features were considered, starting with one fifteenth of the data and ending with all the data. The rand statistic shows that, even with the help of lots of false negatives to boost its score, the accuracy of the model is quite poor. GMM gives soft assignments, so the pairwise metrics were evaluated based on the most likely assignment for the sake of consistent comparison with kmeans clustering.
 
 ![gmm2Clusters](images/gmm2RS.png)
 
