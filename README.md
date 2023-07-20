@@ -46,7 +46,8 @@ a round of preliminary testing, the average log likelihoods of gaussian mixture 
 various numbers of components were collected, and 4 clusters was identified as the best
 performer via the elbow method.\
 ### DBSCAN
-DBSCAN Methodology here:\\
+The DBSCAN algorithm creates clusters by separating regions of lower from regions of higher density. A cluster found with DBSCAN is defined as a maximal set of density-connected points. The cluster will represent a group of data points that are believed to be statistically similar. Additionally, the results of DBSCAN have two hyperparameters, epsilon, the allowable distance between points in the cluster, and minimum point, the minimum amount of points required to be its own cluster. However, almost tuning is done by adjusting epsilon. The data was prepared identically similar to Kmeans and GMM. However, instead of using pca, we used TNSE, which has shown to work more effectively then pca. TNSE is tuned with one hyperparameter, perplexity. TNSE was used to reduce the data to two dimensions, which was needed DBSCAN to work effectively as it heavily relies on euclidean distance. We ran TNSE for 20 thousand iterations for all perplexities 5 and 50, and then chose the dataset produced by TNSE that appeared to exhibit clustering the most from looking at the graphs produced. Then, we ran TNSE on that dataset with the best perplexity for 100 thousand iterations. The dataset produced was then run through DBSCAN with an epsilon from 1 to 50 and minimum points of 2 to 4. The results were then visualized showing the different clusters.
+
 ### Naive Bayes
 NB Methodology here:\\
 ## Results and Discussion
@@ -123,18 +124,22 @@ Overall, the gaussian mixture model was unsuccessful at producing anything that 
 ### DBSCAN
 Our group's implementation of DBCAN involved using the same preprocessing pipeline used with the rest of the implementations. However, we did not use PCA to reduce the dimensionality of the data to two axes because we knew that DBCAN only works well with two dimensions or less. We used TSNE instead, which has shown to be an improvement over PCA in numerous cases and we thought it fit our case. Due to the computationally intensive nature of DBSCAN, we decided to use the GPU-accelerated version of SKLEARN, CUML, on colab. This allowed us to run the many perplexities and iterations of TSNE that are needed to evaluate, which perplexity we should use for DBSCAN as well as whether our number of iterations was enough to reach stability for TSNE. We ran all perplexity values, the hyperparameter for TSNE, from 5 to 50, which are the recommended values, for 10 thousand iterations. Then we ran that set of perplexities again for 20 thousand iterations, which is far above the default value of 1 thousand for TNSE. We did this because when we were running with the default number of iterations we were not reaching stability as a lot of the perplexities had pinching. Even with 20 thousand iterations, still weren't getting much obvious clustering, so we decided to choose the best-looking group with no pinching and looked like it was separating into 2 groups, perplexity 46, since we would run out of compute time if we tried running all perplexities for more iterations. We ran a perplexity of 46 for 100 thousand iterations and then ran GPU-accelerated DBSCAN on the dimensionally reduced dataset with eps ranging from 200 to 1000 with a min sampling size of 2, 3, or 4. This provided 5 to 6 clusters separated a lot, but also missing a lot of data points. I then decided to use the data provided by running TNSE with a perplexity of 50 with 20 thousand iterations as it provided a relatively tight group and was relatively stable between 10 thousand and 20 thousand iterations. This still yielded 5 to 6 clusters. It is clear with DBSCAN that it is not suited well to data of this dimensionality especially with a limited amount of available compute time as we did not get two clusters one with fraud and one with good transactions. DBSCAN provided many clusters instead of two despite the many parameters we tested with TSNE and DBSCAN, so it did not lend itself well to further analysis.
 #### TNSE Analysis
-All perplexities from 5 to 50 with 20 thousand iterations
+##### All perplexities from 5 to 50 with 20 thousand iterations
 ![TNSE](images/TNSE.png)
+From the visualization of the data after the dimension reduction via TNSE, the data that was dimensionally reduced with a perplexity of 46 was chosen because it seemed to exhibit the most distinct clustering.
 
-Perplexity 46 with 100000 iterations
+##### Perplexity 46 with 100000 iterations
 ![TNSE_50_Perp_100000_iters](images/TNSE_50_Perp_100000_iters.png)
+This is the dataset produced after running TNSE with a perplexity of 46 for a hundred thousand iterations. We decided to run it for the additional iterations because it did not look like the dataset was done clustering at 20 thousand iterations. 
 
-### DBSCAN Analysis
-DBSCAN of data of perplexity 46 with 100 thousand iterations
+#### DBSCAN Analysis
+##### DBSCAN of data of perplexity 46 with 100 thousand iterations
 ![DBSCAN_Perp_46](images/DBSCAN_Perp_46.png)
+The DBSCAN results from a TNSE perplexity of 46 were unsuccessful at producing a model that would have a real-world application because it did not split the cluster into two groups, one for fraud and one for nonfraud transactions.
 
-DBSCAN of data of perplexity 50 with 20 thousand iterations
+##### DBSCAN of data of perplexity 50 with 20 thousand iterations
 ![DBSCAN_perp_50](images/DBSCAN_perp_50.png)
+After the unsatisfactory results from the dataset produced by a TNSE perplexity of 46, we decided to use the dataset produced from a perplexity 50 which was markedly different from the perplexity of 46. The results were also unsuccessful at producing a model that would have a real-world application because it did not split the cluster into two groups, one for fraud and one for nonfraud transactions.
 
 ### Naive Bayes
 The Naive Bayes Classifier is our first supervised technique and only supervised classifier for the midterm checkpoint. With the Naive Bayes (Gaussian) classifier, it is especially interesting to look at how an imbalance in the training set will affect the algorithm, as the priors are calculated immediately from the data itself. I will run the algorithm at multiple ratios of MajoritySet:MinoritySet (legitimate transactions and fraudulent transactions respectively) to see how this affects the various evaluation scores of the model.
