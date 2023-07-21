@@ -36,6 +36,7 @@ In conclusion, we begin with a sparse mixed dataset of size 590,500 x 392 and en
 Additionally, we also cleaned the dataset using a similar method with a kNN model we wrote ourselves which capped the number of samples compared from the complete dataset rather than splitting the data into buckets before cleaning. This is expected to have little impact on features which were more complete & had lessing missing data, but may produce better results for filling in missing data for features that were missing a majority of the data. We ran this kNN method with k = 25 and a maximum complete sample size (sampled randomly from the complete samples) of 2500.
 
 ## Methodology
+
 ### Kmeans
 The Kmeans algorithm clusters the data based on each point's distance to the cluster center. Because of this, the boundaries produced by kmeans are simple and based only on Euclidean distance. The data was cleaned with a k-nearest neighbors algorithm before being fitted to different
 models and subjected to principal component analysis. Categorical features were one hot
@@ -59,7 +60,7 @@ The data was prepared identically similar to Kmeans and GMM. However, instead of
 ### Naive Bayes
 The Naive Bayes Classifier is our first supervised technique and only supervised classifier for the midterm checkpoint. Naive Bayes fits probability distrubutions, in this case Gaussian Distributions to the dataset. The model assumes each feature is independent, and it examines the likelihood of each feature of a given transaction to give a likelohood that the transaction is fraud. 
 
-With the Naive Bayes (Gaussian) classifier, it is especially interesting to look at how an imbalance in the training set will affect the algorithm, as the priors are calculated immediately from the data itself. I will run the algorithm at multiple ratios of MajoritySet:MinoritySet (legitimate transactions and fraudulent transactions respectively) to see how this affects the various evaluation scores of the model.## Results and Discussion
+With the Naive Bayes (Gaussian) classifier, it is especially interesting to look at how an imbalance in the training set will affect the algorithm, as the priors are calculated immediately from the data itself. I will run the algorithm at multiple ratios of MajoritySet:MinoritySet (legitimate transactions and fraudulent transactions respectively) to see how this affects the various evaluation scores of the model.
 
 ## Results
 After cleaning the data, the three highest variance features were identified via Principle Component Analysis. The graph below graphs the data points as a function of those components. The yellow points are fraudulent cases.
