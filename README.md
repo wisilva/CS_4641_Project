@@ -19,14 +19,19 @@ We used a combination of supervised and unsupervised learning for this. Supervis
 Finally, one of the biggest issues with the problem is the imbalance of data: since there are far more legitimate purchases than fraudulent ones, there is a need for some approach to balance the training data for the model. To identify which transaction features were most important, we used principle component analysis and factor analysis. To address the problem of too few occurances of fraud, we downsampled the dataset. The dataset often listed features that were never collected, so we used k-nearest neighbors to deal with discrepencies. Below is a more thorough description of the data's problems and our solutions.
 
 ## Data cleaning
- **WRITE A CLEAR DESCRIPTION OF THE DATASET, THE PROBLEMS WITH IT, AND THE CLEANING APPROACH/METHODS HERE**\
- What is the dataset, how was the data collected, how did we decide to clean it, what methods did we try but decide to not use?
-
 The data we used was taken from a competition for fraud detectionn hosted by Vesta, a company which works in that field. The data we used contains information about individual transactions which take place. Each transaction has an ID and label, after which it contains many features numerical and categorical features such as the amount, product code (for product in the transaction), card, address, time, and some features engineered by Vesta. The specific meaning of most of the values is often masked.
 
 We cleaned this method in 2 ways.
 
-//Insert William's method description
+Our data processing techniques attempt to resolve the 3 main issues with our raw data: an imbalanced dataset of primarily legitimate transactions, a large number of missing values, and mixed data (a combination of categorical and numerical features). We also were able to reduce the dimension of the data significantly.  First, we took 100,000 data points (approximately 1/6th of the total data set) from our data to use as the test set that does not see the models until test time, and we cleaned this set separately from the training data. 
+
+The handling of missing data is done in data_processing.py, where we use a KNN imputation approach to fill in the missing values of a point with the mean of its 20 nearest neighbors. Due to the n^2 complexity of the KNN algorithm, performing the full algorithm on our dataset of size 490,500 x 392 is impossible. Instead, we perform an approximate KNN by performing the operation in batches of 5,000 points. This number allows for good performance while remaining possible to compute locally. It should be noted that the KNN imputer is only performed on the numerical features of the data; our approach to categorical data is handled later as we address feature extraction. Before the KNN imputation is performed, our numerical data is normalized to prevent differences in units from significantly affecting the distances. The test data is inferred separately.
+
+Next, we performed feature extraction while simultaneously dealing with categorical features using Factor Analysis of Mixed data, an extension of PCA that uses a one hot encoder to address categorical data and allows for feature reduction of mixed data using the same method as PCA. After performing the FAMD, we selected the principal components that account for 95% of the variance and reduced used matrix multiplication to reduce our feature count from 392 to 159. At this point, all of our features are numerical, and the same principal components are used to reduce the dimension of the test data.
+
+Finally, before passing the data train_data_clean_reduced_encoded.csv into our model, we downsample the majority class of unfraudulent transactions to some ratio of the fraudulent data. We commonly see best performance with a 1:1 ratio (20,000 samples of each class), which will be shown in some of the model evaluations later.
+
+In conclusion, we begin with a sparse mixed dataset of size 590,500 x 392 and end with a full training set of size 490,500 x 159 and a full test set of size 100,000 x 159. Of the training set, we select between 40,000 and 490,500 data points based on performance, and we split that data into a validation set and a train set (or use cross validation).  
 
 Additionally, we also cleaned the dataset using a similar method with a kNN model we wrote ourselves which capped the number of samples compared from the complete dataset rather than splitting the data into buckets before cleaning. This is expected to have little impact on features which were more complete & had lessing missing data, but may produce better results for filling in missing data for features that were missing a majority of the data. We ran this kNN method with k = 25 and a maximum complete sample size (sampled randomly from the complete samples) of 2500.
 
@@ -37,7 +42,8 @@ models and subjected to principal component analysis. Categorical features were 
 encoded, and the dataset was downsampled to provide a balanced dataset. After this preparation, the slices of the dataset
 were sent through a total of 15 kmeans clusterings. Each test used more features than the previous one, with the 15th test fitting the entire dataset. To prevent randomness and noise from polluting the results, each of the 15 tests were repeated 10 times, with the average results collected and graphed in the results section.
 ### GMM
-GMM clusters the data by fitting a specified number of multivariate gaussian distributions to the dataset. Each point is then assigned a probability of being a member of one of the gaussian distributions. For the sake of visualization and comparison with other methods, each point was given a hard assignment to its most likely distribution.\ 
+GMM clusters the data by fitting a specified number of multivariate gaussian distributions to the dataset. Each point is then assigned a probability of being a member of one of the gaussian distributions. For the sake of visualization and comparison with other methods, each point was given a hard assignment to its most likely distribution.
+
 The data was prepared identically to k-means, and a similar battery of tests were ran with
 increasing numbers of principle components included. 15 tests using increasing numbers of features were ran, and each test
 was ran ten times to minimize the effects of random starting conditions. For the sake of rigor and
@@ -46,14 +52,20 @@ a round of preliminary testing, the average log likelihoods of gaussian mixture 
 various numbers of components were collected, and 4 clusters was identified as the best
 performer via the elbow method.\
 ### DBSCAN
-The DBSCAN algorithm creates clusters by separating regions of lower from regions of higher density. A cluster found with DBSCAN is defined as a maximal set of density-connected points. The cluster will represent a group of data points that are believed to be statistically similar. Additionally, the results of DBSCAN have two hyperparameters, epsilon, the allowable distance between points in the cluster, and minimum point, the minimum amount of points required to be its own cluster. However, almost tuning is done by adjusting epsilon. The data was prepared identically similar to Kmeans and GMM. However, instead of using pca, we used TNSE, which has shown to work more effectively then pca. TNSE is tuned with one hyperparameter, perplexity. TNSE was used to reduce the data to two dimensions, which was needed DBSCAN to work effectively as it heavily relies on euclidean distance. We ran TNSE for 20 thousand iterations for all perplexities 5 and 50, and then chose the dataset produced by TNSE that appeared to exhibit clustering the most from looking at the graphs produced. Then, we ran TNSE on that dataset with the best perplexity for 100 thousand iterations. The dataset produced was then run through DBSCAN with an epsilon from 1 to 50 and minimum points of 2 to 4. The results were then visualized showing the different clusters.
+The DBSCAN algorithm creates clusters by separating regions of lower from regions of higher density. A cluster found with DBSCAN is defined as a maximal set of density-connected points. The cluster will represent a group of data points that are believed to be statistically similar. Additionally, the results of DBSCAN have two hyperparameters, epsilon, the allowable distance between points in the cluster, and minimum point, the minimum amount of points required to be its own cluster. However, almost tuning is done by adjusting epsilon. 
+
+The data was prepared identically similar to Kmeans and GMM. However, instead of using pca, we used TNSE, which has shown to work more effectively then pca. TNSE is tuned with one hyperparameter, perplexity. TNSE was used to reduce the data to two dimensions, which was needed DBSCAN to work effectively as it heavily relies on euclidean distance. We ran TNSE for 20 thousand iterations for all perplexities 5 and 50, and then chose the dataset produced by TNSE that appeared to exhibit clustering the most from looking at the graphs produced. Then, we ran TNSE on that dataset with the best perplexity for 100 thousand iterations. The dataset produced was then run through DBSCAN with an epsilon from 1 to 50 and minimum points of 2 to 4. The results were then visualized showing the different clusters.
 
 ### Naive Bayes
-NB Methodology here:\\
-## Results and Discussion
+The Naive Bayes Classifier is our first supervised technique and only supervised classifier for the midterm checkpoint. Naive Bayes fits probability distrubutions, in this case Gaussian Distributions to the dataset. The model assumes each feature is independent, and it examines the likelihood of each feature of a given transaction to give a likelohood that the transaction is fraud. 
+
+With the Naive Bayes (Gaussian) classifier, it is especially interesting to look at how an imbalance in the training set will affect the algorithm, as the priors are calculated immediately from the data itself. I will run the algorithm at multiple ratios of MajoritySet:MinoritySet (legitimate transactions and fraudulent transactions respectively) to see how this affects the various evaluation scores of the model.## Results and Discussion
+
+## Results
 After cleaning the data, the three highest variance features were identified via Principle Component Analysis. The graph below graphs the data points as a function of those components. The yellow points are fraudulent cases.
 
 <img src="images/GT.png" width="500">
+
 ### Kmeans
 
 Over the numerous tests, the k-means algorithm
@@ -142,7 +154,8 @@ The DBSCAN results from a TNSE perplexity of 46 were unsuccessful at producing a
 After the unsatisfactory results from the dataset produced by a TNSE perplexity of 46, we decided to use the dataset produced from a perplexity 50 which was markedly different from the perplexity of 46. The results were also unsuccessful at producing a model that would have a real-world application because it did not split the cluster into two groups, one for fraud and one for nonfraud transactions.
 
 ### Naive Bayes
-The Naive Bayes Classifier is our first supervised technique and only supervised classifier for the midterm checkpoint. With the Naive Bayes (Gaussian) classifier, it is especially interesting to look at how an imbalance in the training set will affect the algorithm, as the priors are calculated immediately from the data itself. I will run the algorithm at multiple ratios of MajoritySet:MinoritySet (legitimate transactions and fraudulent transactions respectively) to see how this affects the various evaluation scores of the model.
+
+Below are the accuracy, balanced accuracy, and F1 score of the model graphed as a function of fraud:legitemate transactions.
 
 ![accuracy](images/acc_ratio.png)
 
