@@ -98,13 +98,13 @@ Below is the average Rand Statistic of the kmeans clustering with varying fracti
 
 ![gmm2Clusters](images/gmm2RS.png)
 
-GMM had a similar trend as kmeans in that its precision was somewhat high, but the low recall drove down its f-measure, so taken together this model is not a very useful predictor. Balanced accuracy showed a similar trend of stable, poor results.
+The high precision measure shows that each cluster had a high degree of purity. The stability of this value shows that the model had a robust resilience to preventing too many false positives from contaminating the fraud cluster. However, the low recall values show that the false negative rate was quite high. F-measure is the harmonic mean of precision and recall, so the low recall values dragged that score down to unacceptable levels. Balanced accuracy showed a similar trend of stable, poor results. Because the downsampling during data cleaning solved the problem of an imbalanced dataset, the balanced accuracy was not meaningfully different from the rand statistic.
 
 ![gmm2Clusters](images/gmm2PrecisionRecall.png)
 
 ![gmm2Clusters](images/gmm2FMeasure.png)
 
-The jaccard coefficient for GMM was better than that of kmeans, but it still had a dismal average result of 0.44, which is still far below what would be needed for any real-world application.
+The jaccard coefficient further reveals the problem of false positives. The accuracy and f-measure results are propped up by the large amount of true negative findings, but when looking just at the accuracy of true positive results, the key weakness of this clustering is found. The jaccard coefficient for GMM was better than that of kmeans, but it still had a dismal average result of 0.44, which is still far below what would be needed for any real-world application.
 
 ![gmm2Clusters](images/gmm2JC.png)
 
@@ -117,7 +117,9 @@ However, adding more clusters did not help the performance in rand statistic. Th
 
 ![gmm2Clusters](images/gmm4RS.png)
 
-The additional clusters only exacerbated the existing behaviors of the binary case. The precision results were higher due to the smaller clustering, but the corresponding fall in recall left the f-measure result with an average of 0.24. The balanced accuracy showed no meaningful change either.
+The additional clusters only exacerbated the existing behaviors of the binary case. Dividing the data set up into smaller parts left the true fraud cluster smaller in the 4-mixture case. This smaller cluster let the 4-mixture GMM reach exceptionally high precision results because the contamination of the cluster was so small. However, the smaller cluster size lead to far more false negative cases, which drive the average recall to below 0.2. The increased precision could not outweigh the dismal recall, so the f-measure was the worst we have encountered so far.
+
+The smaller clustering did not have much meaningful impact on the balanced accuracy, because the additional false negatives were counterbalanced by a decrease in false positives. The balanced accuracy was mostly unchanged from the binary mixture model, which was also not very good. 
 
 ![gmm2Clusters](images/gmm4Other.png)
 
