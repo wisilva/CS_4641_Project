@@ -58,9 +58,14 @@ The DBSCAN algorithm creates clusters by separating regions of lower from region
 The data was prepared identically similar to Kmeans and GMM. However, instead of using pca, we used TNSE, which has shown to work more effectively then pca. TNSE is tuned with one hyperparameter, perplexity. TNSE was used to reduce the data to two dimensions, which was needed DBSCAN to work effectively as it heavily relies on Euclidean distance. We ran TNSE for 20 thousand iterations for all perplexities 5 and 50, and then chose the dataset produced by TNSE that appeared to exhibit clustering the most from looking at the graphs produced. Then, we ran TNSE on that dataset with the best and second-best perplexity for 100 thousand iterations. The dataset produced was then run through DBSCAN with an various epsilon and minimum cluster sizes and were tuned from there. The results were then visualized showing the different clusters. They then analyzed to determine if any of the meaningfully sized clusters differed from the average 3.5% to see if they provided any value for real-world applications.
 
 ### Naive Bayes
-The Naive Bayes Classifier is our first supervised technique and only supervised classifier for the midterm checkpoint. Naive Bayes fits probability distrubutions, in this case Gaussian Distributions to the dataset. The model assumes each feature is independent, and it examines the likelihood of each feature of a given transaction to give a likelohood that the transaction is fraud. 
+The Naive Bayes Classifier is our first supervised technique and only supervised classifier for the midterm checkpoint. Naive Bayes fits probability distrubutions, in this case Gaussian Distributions to the dataset. The model assumes each feature is independent, and it examines the likelihood of each feature of a given transaction to give a likelihood that the transaction is fraud. 
 
 With the Naive Bayes (Gaussian) classifier, it is especially interesting to look at how an imbalance in the training set will affect the algorithm, as the priors are calculated immediately from the data itself. I will run the algorithm at multiple ratios of MajoritySet:MinoritySet (legitimate transactions and fraudulent transactions respectively) to see how this affects the various evaluation scores of the model.
+
+### Regression
+The regression model is our second supervised model. Both sets of cleaned data were used to train the model in order to compare the results produced. Linear Regression assumes a linear relationship between the features and the output (confidence whether a sample is fraud). Ridge Regression furthers linear regression by adding an L2 Regularization term to the loss function.
+
+Our regression implementation uses both of the cleaned datasets, allowing comparison of the results. 80% of the data is used to train the model, and a remaining 20% is used for testing. Additionally, we performed backward elimination feature reduction to display the results of the model as features are removed from the model.
 
 ## Results
 After cleaning the data, the three highest variance features were identified via Principle Component Analysis. The graph below graphs the data points as a function of those components. The yellow points are fraudulent cases.
@@ -184,8 +189,17 @@ Fixing this ratio at 1, we test the performance of our model on the test set, wh
 
 Even with a balance between the two class labels in the training set, the F1 score of the data on the test set is low. It is possible that simply more data is required to improve the performance of the Naive Bayesian Classifier. As such, we might explore upsampling techniques in the future to balance the data while providing more samples. This, like many things, is difficult in high dimensions, our current FAMD approach to data representation should help with this matter.  
 
+###Regression
+Below are graphs of the balanced accuracy and F1 Score of the model. The orange line is the data cleaned via the kNN imputer using buckets of size 5000 followed by PCA feature extraction (cleaning method 1), and the blue line is the data cleaned by capping the number of complete nearest neighbors to a sample of 2500 (k = 20). 
 
+![regression_ba](images/Regression_BalancedAccuracy.png)
+![regression_f1](images/Regression_F1Score.png)
 
+As shown in the graphs, the effectiveness of including additional features after including about 100 of the most relevant features drops off dramatically for this model. There is also an extremely large difference in the balanced accuracy and f1 score when running the model on the different data sets. The data cleaned using the full dataset in 1 bucket, but capping the number of complete nearest neighbors to 2500 proved much more effective at distinguishing fraudulent samples from non-fraudulent samples near the cutoff. 
+
+This difference likely occured due to the sparasity of the fraud data samples in the original dataset - there were likely very few fraudulent samples in the some buckets of size 5000 to impute data from, causing the data to be cleaned less effective and overall hurting the performance of the model.
+
+Additionally, the accuracy of the model varied somewhat significantly around cutoff. The results of the regression were run through a sigmoid function before using a cutoff of 0.57, where samples with values predicted > .57 in the output predicted as being fraud and otherwise being predicted as not fraud. However, there were many non-fraudulent samples around predicted around .5, and many fraudulent samples without much a signifantly above .57.
 
 
 Link to our semester plan: https://docs.google.com/spreadsheets/d/1Jp_Bu6QtXSaUK9Z2fSecP_BQxmAvKgUN0jklrbbOljo/edit?usp=sharing
