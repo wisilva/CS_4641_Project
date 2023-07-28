@@ -1,5 +1,4 @@
 
-
 CS 4641 Team 5 Project
 
 Summer 2023
@@ -202,7 +201,7 @@ This difference likely occured due to the sparasity of the fraud data samples in
 Additionally, the accuracy of the model varied somewhat significantly around cutoff. The results of the regression were run through a sigmoid function before using a cutoff of 0.57, where samples with values predicted > .57 in the output predicted as being fraud and otherwise being predicted as not fraud. However, there were many non-fraudulent samples around predicted around .5, and many fraudulent samples without much a signifantly above .57.
 
 
-Link to our semester plan: https://docs.google.com/spreadsheets/d/1Jp_Bu6QtXSaUK9Z2fSecP_BQxmAvKgUN0jklrbbOljo/edit?usp=sharing
+Link to our semester plan: https://docs.google.com/spreadsheets/d/1qv1UTtuupWs0FLID-cmZQPLhKg9Y1Sr4_GfFkuQEHX4/edit?usp=sharing 
 
 Link to our dataset: https://www.kaggle.com/competitions/ieee-fraud-detection/data
 
