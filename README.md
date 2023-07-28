@@ -14,7 +14,7 @@ Credit card fraud detection is a valuable application of ML that has been resear
 Despite the interest that has been taken in fraud detection, the problem of credit card fraud has gotten progressively more severe in the 2010s and early 2020s, with a projected $397 billion loss over the 2020s worldwide [1, 4]. This is in part due to the dynamic nature of the problem: as fraud detection improves, so too do fraudsters who often attempt to mimic the normal purchases of the card’s holder [2]. Around 65% of the total losses are covered by the credit companies, while the remaining 35% is left to the merchants to fill [4]. Improving the performance of models is a constant necessity.
 
 ## Problem Definition
-We used a combination of supervised and unsupervised learning for this. Supervised classifiers like Naive Bayes classification and SVMs can be used to provide confident classifications for an input as fraudulent or legitimate, while clustering methods are capable of clustering data into a cluster of legitimate purchases and one or more illegitimate purchases. Intuitively, we have started with hard clustering such as K-means and hierarchical techniques, as this is a binary classification, but we also explored the use of soft boundaries: card holders can make unusual purchases, so it is important to determine whether a purchase is actually fraudulent or simply unusual. We handled this case with a Gaussian Mixture Model, where we could identify unusual purchases as somewhere between fraudulent and legitimate. We intend to use sk-learn implementations for these algorithms.
+We used a combination of supervised and unsupervised learning for this. Supervised classifiers like Naive Bayes classification and Linear Regressions can be used to provide confident classifications for an input as fraudulent or legitimate, while clustering methods are capable of clustering data into a cluster of legitimate purchases and one or more illegitimate purchases. Intuitively, we have started with hard clustering such as K-means and hierarchical techniques, as this is a binary classification, but we also explored the use of soft boundaries: card holders can make unusual purchases, so it is important to determine whether a purchase is actually fraudulent or simply unusual. We handled this case with a Gaussian Mixture Model, where we could identify unusual purchases as somewhere between fraudulent and legitimate. We intend to use sk-learn implementations for these algorithms.
 
 Finally, one of the biggest issues with the problem is the imbalance of data: since there are far more legitimate purchases than fraudulent ones, there is a need for some approach to balance the training data for the model. To identify which transaction features were most important, we used principle component analysis and factor analysis. To address the problem of too few occurances of fraud, we downsampled the dataset. The dataset often listed features that were never collected, so we used k-nearest neighbors to deal with discrepencies. Below is a more thorough description of the data's problems and our solutions.
 
@@ -210,9 +210,9 @@ Responsibilities:
 
 Sam: Assist with data cleaning, sampling, and feature reduction. Implementation, testing, and visualization of DBSCAN, Midterm Report
 
-William: Assist with data cleaning, sampling, and feature reduction. Implementation, testing, and visualization of Hierarchical Clustering and SVM, Proposal and Github management
+William: Assist with data cleaning, sampling, and feature reduction. Implementation, testing, and visualization of Hierarchical Clustering and Naive Bayes, Proposal and Github management
 
-Stefan: Assist with data cleaning, sampling, and feature reduction. Implementation, testing, and visualization of Naive Bayes, Final Report, and Final Recording
+Stefan: Assist with data cleaning, sampling, and feature reduction. Implementation, testing, and visualization of Naive Bayes, Final Report, GANTT updates, and Final Recording
 
 Carter: Primary for data cleaning, sampling, and feature reduction. Implementation, testing, and visualization of Regressions
 
